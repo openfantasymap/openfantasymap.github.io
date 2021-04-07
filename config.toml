@@ -2,3 +2,15 @@ baseURL = "http://example.org/"
 languageCode = "en-us"
 title = "OpenFantasyMap"
 theme = "ananke"
+sectionPagesMenu = "main"
+
+[menu]
+    [[menu.main]]
+        identifier = "maps"
+        name = "Maps"
+        title = "The Map"
+        url = "https://map.openfantasymap.org"
+        weight = -110
+
+[params]
+  background_color_class = "bg-black"
