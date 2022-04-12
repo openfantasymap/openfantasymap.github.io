@@ -1,16 +1,37 @@
-baseURL = "https://openfantasymap.github.io/"
+baseURL = "https://www.fantasymaps.org/"
 languageCode = "en-us"
-title = "OpenFantasyMap"
+title = "FantasyMaps"
 theme = "ananke"
 sectionPagesMenu = "main"
 
 [menu]
     [[menu.main]]
         identifier = "maps"
-        name = "Maps"
-        title = "The Map"
-        url = "https://map.openfantasymap.org"
-        weight = -110
+        name = "The Maps"
+        title = "The Maps"
+        url = "https://map.fantasymaps.org"
+        weight = 110
 
 [params]
   background_color_class = "bg-black"
+  description = "Serious tech for non-serious worlds"
+  facebook = ""
+  twitter = "https://twitter.com/openfantasymap2"
+  instagram = ""
+  youtube = "https://www.youtube.com/channel/UCqtvFb_gqerBxvOUnJ-yETA"
+  github = "https://www.github.com/openfantasymap"
+  gitlab = ""
+  linkedin = ""
+  mastodon = ""
+  slack = ""
+  stackoverflow = ""
+  
+  rss = ""
+
+[languages]
+  [languages.en]
+    weight = 1
+    contentDir = "content/en"
+  [languages.it]
+    weight = 2
+    contentDir = "content/it"
