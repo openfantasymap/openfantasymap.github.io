@@ -1,4 +1,4 @@
-baseURL = "https://www.fantasymaps.org/"
+# baseURL = "https://www.fantasymaps.org/"
 languageCode = "en-us"
 title = "FantasyMaps"
 theme = "ananke"
