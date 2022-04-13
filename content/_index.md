@@ -3,7 +3,7 @@ title: "FantasyMaps"
 featured_image: '/images/ofm_header.png'
 description: "Serious tech for fantasy worlds"
 ---
-FantasyMaps è a project by [OpenHistoryMap](https://www.openhistorymap.org) that has as its main objective the creation of maps of fantasy worlds and the tools to manage the data connected to them.
+FantasyMaps is a project created and developed by [OpenHistoryMap](https://www.openhistorymap.org) that uses technologies created for Digital Humanities but has as its main objective the creation of maps of fantasy worlds and the tools to manage the data connected to these fantasy worlds.
 
 Why would we do that? 
 
