@@ -11,12 +11,6 @@ sectionPagesMenu = "main"
         title = "The Maps"
         url = "https://map.fantasymaps.org"
         weight = 110
-    [[menu.main]]
-        identifier = "patreon"
-        name = "Patreon"
-        title = "Patreon"
-        url = "https://www.patreon.com/openfantasymap"
-        weight = 120
 
 [params]
   background_color_class = "bg-black"
@@ -31,6 +25,6 @@ sectionPagesMenu = "main"
   mastodon = ""
   slack = ""
   stackoverflow = ""
-  
+  patreon = "https://www.patreon.com/bePatron?u=3201020"
   rss = ""
 
