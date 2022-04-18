@@ -3,7 +3,7 @@ title: "FantasyMaps"
 featured_image: '/images/ofm_header.png'
 description: "Serious tech for fantasy worlds"
 ---
-FantasyMaps is a digital mapping project about fantasy worlds created and developed by [OpenHistoryMap](https://www.openhistorymap.org) that uses technologies created for Digital Humanities. Its main objective is the creation of maps of fantasy worlds and tools to manage the data connected to these fantasy worlds.
+FantasyMaps is a digital mapping project about fantasy worlds created and developed by [OpenHistoryMap](https://www.openhistorymap.org) that uses technologies created for Digital Humanities. Its main objective is the creation of maps of fantasy worlds and tools to manage the data connected to these fantasy worlds. In addition to these fantasy worlds we are also creating the tools to integrate with VTTs (like <a href="https://foundryvtt.com/" target="_blank">FoundryVTT</a>) and, in the future, tools like Unity. 
 
 Why would we do that? 
 
