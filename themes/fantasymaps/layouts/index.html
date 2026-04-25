@@ -1,0 +1,108 @@
+{{ define "main" }}
+{{ $atlas := index .Site.Menus.main 2 }}
+
+<section class="home-hero" aria-label="Plate I — Cover">
+  <div class="home-hero__paper">
+    <div>
+      <p class="mark mark--accent">Plate&nbsp;&nbsp;I &nbsp; · &nbsp; Cover</p>
+      <h1 class="home-hero__title">
+        <span>Fantasy</span>
+        <span>Maps.</span>
+      </h1>
+    </div>
+
+    <div>
+      <p class="home-hero__tagline">{{ .Site.Params.tagline }}</p>
+      <p class="home-hero__intro">A digital atlas of imagined places, charted with the same instruments we use for the real world.</p>
+    </div>
+
+    <div class="home-hero__cta">
+      {{ with $atlas }}<a class="btn-primary" href="{{ .URL }}">Open the full atlas</a>{{ end }}
+      <a class="btn-quiet" href="#prose">Read the survey notes</a>
+    </div>
+  </div>
+
+  {{- $cfg := dict
+        "style" .Site.Params.map_style_url
+        "lng"   .Site.Params.map_center_lng
+        "lat"   .Site.Params.map_center_lat
+        "zoom"  .Site.Params.map_zoom -}}
+  <div class="home-hero__chart">
+    <span class="home-hero__plate-mark">{{ .Site.Params.map_world_label | default "PLATE&nbsp;I" }}</span>
+    <div class="home-hero__map">
+      <div class="map"
+           data-chart-map
+           data-config="home-map"
+           role="img"
+           aria-label="Live map of {{ .Site.Params.map_world_label | default "the world" }}">
+      </div>
+      <script type="application/json" data-chart-config="home-map">{{ $cfg | jsonify | safeJS }}</script>
+    </div>
+    <div class="home-hero__caption">
+      <span class="place">The {{ .Site.Params.map_world_label | default "world" | title }} survey</span>
+      <span class="meta">
+        {{ printf "%.2f°N" .Site.Params.map_center_lat }} &nbsp;&middot;&nbsp;
+        {{ printf "%.2f°E" .Site.Params.map_center_lng }} &nbsp;&middot;&nbsp;
+        z&nbsp;{{ printf "%.1f" .Site.Params.map_zoom }}
+      </span>
+      {{ with .Site.Params.map_world_attribution }}
+        <span class="attr">{{ . }}</span>
+      {{ end }}
+      {{ with $atlas }}
+        <a class="open-atlas" href="{{ .URL }}" style="grid-column: 1 / -1; justify-self: end;">Open the full atlas</a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <section id="prose" class="home-prose plate">
+    <div class="margin">
+      <p class="mark">Plate&nbsp;&nbsp;II</p>
+      <p class="mark">The Survey</p>
+    </div>
+    <div class="body">
+      {{ if .Content }}
+        <div class="home-prose__body">
+          {{ .Content }}
+        </div>
+      {{ else }}
+        <p class="home-prose__lede">A small guild charting fantasy worlds with the tools we made for the real one.</p>
+      {{ end }}
+    </div>
+  </section>
+
+  <section class="plate-index" aria-labelledby="contents">
+    <div class="plate-index__head plate">
+      <div class="margin">
+        <p class="mark">Plate&nbsp;&nbsp;III</p>
+        <p class="mark">Contents</p>
+      </div>
+      <div class="body">
+        <h2 id="contents" class="plate-index__title">In this volume</h2>
+      </div>
+    </div>
+
+    <ol class="plate-index__list">
+      {{ $entries := slice
+        (dict "num" "I"   "title" "The Atlas"            "desc" "Open the full interactive map. Worlds you can walk through at any zoom."  "url" $atlas.URL "external" true)
+        (dict "num" "II"  "title" "The Tools"            "desc" "Modules and servers we build so other people can chart their own worlds." "url" "/tools/"      "external" false)
+        (dict "num" "III" "title" "The Talks"            "desc" "Conference recordings, slides, and write-ups from the road."             "url" "/conference/" "external" false)
+        (dict "num" "IV"  "title" "Become a Patron"      "desc" "Help fund the survey. Patrons keep the lights on at the chart room."     "url" .Site.Params.patreon "external" true)
+      }}
+      {{ range $entries }}
+        <li class="plate-index__item">
+          <a href="{{ .url }}"{{ if .external }} rel="noopener"{{ end }}>
+            <span class="num">№&nbsp;{{ .num }}</span>
+            <span>
+              <span class="title">{{ .title }}</span>
+              <span class="desc">{{ .desc }}</span>
+            </span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      {{ end }}
+    </ol>
+  </section>
+</div>
+{{ end }}

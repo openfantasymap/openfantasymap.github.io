@@ -1,0 +1,48 @@
+{{ $atlas := index .Site.Menus.main 2 }}
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div class="site-footer__col">
+        <p class="site-footer__motto">A digital atlas of imagined places.</p>
+        <p class="site-footer__sub">{{ .Site.Params.tagline }}</p>
+      </div>
+
+      <div class="site-footer__col">
+        <h3>Sections</h3>
+        <ul>
+          <li><a href="/tools/">The Tools</a></li>
+          <li><a href="/conference/">The Talks</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__col">
+        <h3>The Atlas</h3>
+        <ul>
+          {{ with $atlas }}<li><a href="{{ .URL }}">Open the full atlas</a></li>{{ end }}
+          {{ if .OutputFormats.Get "RSS" }}
+            {{ with .OutputFormats.Get "RSS" }}<li><a href="{{ .RelPermalink }}">RSS feed</a></li>{{ end }}
+          {{ end }}
+        </ul>
+      </div>
+
+      <div class="site-footer__col">
+        <h3>Elsewhere</h3>
+        <ul>
+          {{ with .Site.Params.patreon }}<li><a href="{{ . }}" rel="me">Patreon</a></li>{{ end }}
+          {{ with .Site.Params.github  }}<li><a href="{{ . }}" rel="me">GitHub</a></li>{{ end }}
+          {{ with .Site.Params.youtube }}<li><a href="{{ . }}" rel="me">YouTube</a></li>{{ end }}
+          {{ with .Site.Params.twitter }}<li><a href="{{ . }}" rel="me">Twitter</a></li>{{ end }}
+        </ul>
+      </div>
+    </div>
+
+    <div class="colophon">
+      <span>{{ .Site.Params.guild }}</span>
+      <span>{{ .Site.Params.license_content }}</span>
+      <span>{{ .Site.Params.license_code }}</span>
+      <span>Set in Spectral, Public Sans &amp; Fragment Mono.</span>
+      <span>Compiled with Hugo &middot; {{ .Site.Params.edition }}</span>
+    </div>
+  </div>
+</footer>

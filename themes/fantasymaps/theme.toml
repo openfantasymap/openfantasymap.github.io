@@ -1,0 +1,16 @@
+name = "FantasyMaps"
+license = "MIT"
+licenselink = "https://opensource.org/licenses/MIT"
+description = "An atlas-plate Hugo theme for FantasyMaps. Paper page, chart-room map panels."
+homepage = "https://www.fantasymaps.org/"
+tags = ["atlas", "cartography", "editorial", "minimal"]
+features = ["maplibre", "rss", "taxonomy", "responsive"]
+min_version = "0.110.0"
+
+[author]
+  name = "FantasyMaps / OpenHistoryMap guild"
+  homepage = "https://www.fantasymaps.org/"
+
+[original]
+  author = "FantasyMaps / OpenHistoryMap guild"
+  homepage = "https://www.fantasymaps.org/"

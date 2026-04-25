@@ -1,0 +1,28 @@
+{{ define "main" }}
+<div class="container">
+  <header class="plate-head">
+    <div class="plate-head__margin">
+      <p class="mark mark--accent">Index</p>
+    </div>
+    <div>
+      <h1 class="plate-head__title">{{ .Title }}</h1>
+    </div>
+  </header>
+
+  <section class="plate-list">
+    <ol class="plate-list__items">
+      {{ range $name, $taxonomy := .Data.Terms }}
+        <li class="plate-list__item">
+          <span class="plate-list__num">№&nbsp;{{ len $taxonomy }}</span>
+          <div class="plate-list__body">
+            <h2 class="plate-list__title">
+              <a href="{{ printf "/%s/%s/" $.Data.Plural ($name | urlize) | relURL }}">{{ $name | title }}</a>
+            </h2>
+            <p class="plate-list__desc">{{ len $taxonomy }} plates filed.</p>
+          </div>
+        </li>
+      {{ end }}
+    </ol>
+  </section>
+</div>
+{{ end }}

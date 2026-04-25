@@ -1,30 +1,62 @@
 # baseURL = "https://www.fantasymaps.org/"
 languageCode = "en-us"
 title = "FantasyMaps"
-theme = "ananke"
+theme = "fantasymaps"
 sectionPagesMenu = "main"
+enableRobotsTXT = true
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
 
 [menu]
     [[menu.main]]
+        identifier = "tools"
+        name = "The Tools"
+        title = "The Tools"
+        url = "/tools/"
+        weight = 100
+    [[menu.main]]
+        identifier = "conference"
+        name = "The Talks"
+        title = "Conference talks"
+        url = "/conference/"
+        weight = 105
+    [[menu.main]]
         identifier = "maps"
-        name = "The Maps"
-        title = "The Maps"
+        name = "The Atlas"
+        title = "Open the full atlas"
         url = "https://map.fantasymaps.org"
         weight = 110
+    [[menu.main]]
+        identifier = "contact"
+        name = "Contact"
+        title = "Get in touch"
+        url = "/contact/"
+        weight = 120
 
 [params]
-  background_color_class = "bg-black"
   description = "Serious tech for non-serious worlds"
-  facebook = ""
-  twitter = "https://twitter.com/openfantasymap2"
-  instagram = ""
-  youtube = "https://www.youtube.com/channel/UCqtvFb_gqerBxvOUnJ-yETA"
-  github = "https://www.github.com/openfantasymap"
-  gitlab = ""
-  linkedin = ""
-  mastodon = ""
-  slack = ""
-  stackoverflow = ""
+  tagline = "Serious tech for non-serious worlds"
   patreon = "https://www.patreon.com/bePatron?u=3201020"
-  rss = ""
+  github = "https://www.github.com/openfantasymap"
+  youtube = "https://www.youtube.com/channel/UCqtvFb_gqerBxvOUnJ-yETA"
+  twitter = "https://twitter.com/openfantasymap2"
 
+  # The chart-room map on the homepage. Drop a MapLibre style URL here.
+  map_style_url = "https://static.fantasymaps.org/toril/map.json"
+  map_center_lng = -76.75334091250465
+  map_center_lat = 43.591369061970596
+  map_zoom = 11.91
+  map_world_label = "TORIL"
+  map_world_attribution = "The property of all the concepts in Toril is of Wizards of the Coast."
+
+  # Footer colophon
+  license_content = "Site content licensed CC BY-SA 4.0."
+  license_code = "Theme code MIT licensed."
+  edition = "MMXXVI"
+  guild = "Compiled by the OpenHistoryMap guild."

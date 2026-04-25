@@ -1,0 +1,28 @@
+{{ define "main" }}
+<div class="container">
+  <header class="plate-head">
+    <div class="plate-head__margin">
+      <p class="mark mark--accent">Tag &middot; {{ .Data.Singular | title }}</p>
+    </div>
+    <div>
+      <h1 class="plate-head__title">{{ .Title }}</h1>
+      <p class="plate-list__count">{{ len .Pages }} plates filed under this tag</p>
+    </div>
+  </header>
+
+  <section class="plate-list">
+    <ol class="plate-list__items">
+      {{ range $i, $p := .Pages.ByDate.Reverse }}
+        <li class="plate-list__item">
+          <span class="plate-list__num">№&nbsp;{{ printf "%03d" (add $i 1) }}</span>
+          <div class="plate-list__body">
+            <h2 class="plate-list__title"><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h2>
+            <p class="plate-list__desc">From <em>{{ $p.Section | title }}</em></p>
+          </div>
+          <time class="plate-list__date" datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date.Format "Jan 2006" }}</time>
+        </li>
+      {{ end }}
+    </ol>
+  </section>
+</div>
+{{ end }}

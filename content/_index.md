@@ -1,21 +1,17 @@
 ---
 title: "FantasyMaps"
-featured_image: '/images/ofm_header.png'
-description: "Serious tech for fantasy worlds"
+description: "A digital atlas of imagined places, charted with real cartographic instruments."
 ---
-FantasyMaps is a **digital mapping project** about **fantasy worlds** created and developed by [OpenHistoryMap](https://www.openhistorymap.org) that uses technologies created for Digital Humanities. Its main objective is the creation of maps of fantasy worlds and tools to manage the data connected to these fantasy worlds. In addition to these fantasy worlds we are also creating the tools to integrate with VTTs (like <a href="https://foundryvtt.com/" target="_blank">FoundryVTT</a>) and, in the future, tools like Unity and the new AI wave with MCP servers. 
 
-Why would we do that? 
+This is a place where imagined worlds are charted in earnest. We treat Faerûn, Middle-earth, and the worlds your group invented last Sunday with the same instruments cartographers use for the real one — projections, tile pyramids, vector layers, geocoders, the lot. The point is not to make a map *of* a fantasy. The point is to make a fantasy you can wander around in, look up a tavern in, hand to your players, and come back to next month and find unchanged.
 
-First of all, why not?
+We started inside [OpenHistoryMap](https://www.openhistorymap.org), a project that does the same thing for the past. Most of what runs the atlas is open source: tile servers, generative algorithms for continents and biomes, ingest pipelines for hand-drawn art, an MCP server so language models can keep your campaign's lore straight, and a [FoundryVTT module](/tools/ofm-map-canvas/) that turns a region of the map into a playable scene with walls and lights already drawn. None of that is the point either, but it is how the atlas gets made.
 
-GIS technologies have grown a lot and made cartographic visualizations way easier every day. For this reason we are trying to develop and define a system enabling you all to use these technologies to use and live the maps of the fantasy worlds you spend so much time in, in the best possible way.
+The slow long version of the vision is a shared, persistent world where what players do leaves traces — a slow-paced MMRPG built on top of the maps. We aren't there yet. What we have today is the atlas, the tools to add to it, and an open invitation.
 
-But the main reason is that our vision goes beyond that. We want the maps to be the canvas for a shared experience of the world. Basically a slow paced and interactive story-driven MMRPG where the players have real impact on their version of the world. 
+If any of this resonates, the most useful thing you can do is [join the survey on Patreon](https://www.patreon.com/bePatron?u=3201020). Patrons keep the chart room open.
 
-Help us acheive this vision by supporting us!
 {{< rawhtml >}}
-
 <a href="https://www.patreon.com/bePatron?u=3201020" data-patreon-widget-type="become-patron-button">Become a Patron!</a>
-
-{{< rawhtml >}}
+<script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>
+{{< /rawhtml >}}

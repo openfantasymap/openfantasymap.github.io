@@ -1,0 +1,17 @@
+{{- $id := .Get 0 | default (.Get "id") -}}
+{{- $title := .Get "title" | default (printf "YouTube video %s" $id) -}}
+<figure class="plate-figure">
+  <div class="plate-figure__media" data-state="ready">
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/{{ $id }}?rel=0"
+      title="{{ $title }}"
+      loading="lazy"
+      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen></iframe>
+  </div>
+  <figcaption class="plate-figure__caption">
+    <span class="mark">Video &middot; YouTube</span>
+    <span class="meta">id&nbsp;{{ $id }}</span>
+  </figcaption>
+</figure>

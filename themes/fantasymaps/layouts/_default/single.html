@@ -1,0 +1,64 @@
+{{ define "main" }}
+<article class="container single">
+  <header class="single__head plate">
+    <div class="margin">
+      {{ $section := .Section | default "Page" | title }}
+      <p class="mark mark--accent">Plate &middot; {{ $section }}</p>
+      {{ with .Date }}<time class="mark" datetime="{{ .Format "2006-01-02" }}">{{ .Format "2 January 2006" }}</time>{{ end }}
+      {{ if .Params.tags }}
+        <div style="display:flex;flex-wrap:wrap;gap:.4em;">
+          {{ range .Params.tags }}
+            <a class="tag" href="{{ "/tags/" | relURL }}{{ . | urlize }}/">{{ . }}</a>
+          {{ end }}
+        </div>
+      {{ end }}
+    </div>
+    <div>
+      <h1 class="single__title">{{ .Title }}</h1>
+      {{ with .Description }}<p class="single__lede">{{ . }}</p>{{ end }}
+    </div>
+  </header>
+
+  {{ with .Params.featured_image }}
+    <figure class="plate-figure">
+      <div class="plate-figure__media" data-state="ready">
+        <img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy">
+      </div>
+      <figcaption class="plate-figure__caption">
+        <span class="mark">Plate &middot; {{ $.Title }}</span>
+        <span class="meta">{{ . | path.Base }}</span>
+      </figcaption>
+    </figure>
+  {{ end }}
+
+  <div class="plate">
+    <div class="margin">
+      <p class="mark">Body</p>
+    </div>
+    <div class="single__body body">
+      {{ .Content }}
+    </div>
+  </div>
+
+  {{ if .Section }}
+    {{ $prev := .PrevInSection }}
+    {{ $next := .NextInSection }}
+    {{ if or $prev $next }}
+      <nav class="single__nav" aria-label="Other plates in this section">
+        {{ if $prev }}
+          <a class="prev" href="{{ $prev.RelPermalink }}">
+            <span class="dir">← Earlier plate</span>
+            <span class="ttl">{{ $prev.Title }}</span>
+          </a>
+        {{ else }}<span></span>{{ end }}
+        {{ if $next }}
+          <a class="next" href="{{ $next.RelPermalink }}">
+            <span class="dir">Latest plate →</span>
+            <span class="ttl">{{ $next.Title }}</span>
+          </a>
+        {{ end }}
+      </nav>
+    {{ end }}
+  {{ end }}
+</article>
+{{ end }}

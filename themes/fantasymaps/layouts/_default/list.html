@@ -1,0 +1,51 @@
+{{ define "main" }}
+<div class="container">
+  <header class="plate-head">
+    <div class="plate-head__margin">
+      <p class="mark mark--accent">Plate &middot; {{ .Section | title }}</p>
+      <p class="mark">{{ now.Format "MMXXVI" | default "MMXXVI" }}</p>
+    </div>
+    <div>
+      <h1 class="plate-head__title">{{ .Title }}</h1>
+      {{ with .Content }}<div class="plate-head__lede">{{ . }}</div>{{ end }}
+      <p class="plate-list__count">{{ len .Pages }} {{ if eq (len .Pages) 1 }}plate{{ else }}plates{{ end }} on file</p>
+    </div>
+  </header>
+
+  <section class="plate-list">
+    {{ if .Pages }}
+      <ol class="plate-list__items">
+        {{ range $i, $p := .Pages.ByDate.Reverse }}
+          <li class="plate-list__item">
+            <span class="plate-list__num">№&nbsp;{{ printf "%03d" (add $i 1) }}</span>
+            <div class="plate-list__body">
+              <h2 class="plate-list__title">
+                <a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a>
+              </h2>
+              {{ with $p.Params.description }}
+                <p class="plate-list__desc">{{ . }}</p>
+              {{ else }}
+                {{ with $p.Summary }}
+                  <p class="plate-list__desc">{{ . | plainify | truncate 200 }}</p>
+                {{ end }}
+              {{ end }}
+              {{ if $p.Params.tags }}
+                <p class="plate-list__meta">
+                  {{ range $p.Params.tags }}
+                    <a class="tag" href="{{ "/tags/" | relURL }}{{ . | urlize }}/">{{ . }}</a>
+                  {{ end }}
+                </p>
+              {{ end }}
+            </div>
+            <time class="plate-list__date" datetime="{{ $p.Date.Format "2006-01-02" }}">
+              {{ $p.Date.Format "Jan 2006" }}
+            </time>
+          </li>
+        {{ end }}
+      </ol>
+    {{ else }}
+      <p class="empty">This section has no plates yet.</p>
+    {{ end }}
+  </section>
+</div>
+{{ end }}

@@ -1,0 +1,29 @@
+<header class="site-header">
+  <div class="container site-header__inner">
+    <div class="wordmark">
+      <a href="{{ "/" | relURL }}">
+        FantasyMaps
+        <span class="wordmark__sub">Plate &middot; an open atlas</span>
+      </a>
+    </div>
+
+    <nav aria-label="Sections">
+      <ul class="nav">
+        {{ $current := . }}
+        {{ range .Site.Menus.main }}
+          {{ $show := or (eq .Identifier "tools") (eq .Identifier "conference") }}
+          {{ if $show }}
+            {{ $isCurrent := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
+            {{ if and (not $isCurrent) (eq .Identifier "tools") (eq $current.Section "tools") }}{{ $isCurrent = true }}{{ end }}
+            {{ if and (not $isCurrent) (eq .Identifier "conference") (eq $current.Section "conference") }}{{ $isCurrent = true }}{{ end }}
+            <li><a href="{{ .URL }}"{{ if $isCurrent }} class="is-current" aria-current="true"{{ end }}>{{ .Name }}</a></li>
+          {{ end }}
+        {{ end }}
+      </ul>
+    </nav>
+
+    {{ with index .Site.Menus.main 2 }}
+      <a class="atlas-cta" href="{{ .URL }}">Open the atlas</a>
+    {{ end }}
+  </div>
+</header>
