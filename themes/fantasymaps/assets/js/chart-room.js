@@ -128,4 +128,48 @@
   } else {
     start();
   }
+
+  /* -----------------------------------------------------------------
+   * Day / Night toggle. The page-lighting state was already chosen
+   * inline in <head> to avoid FOUC; this just wires the buttons and
+   * persists the user's choice.
+   * ----------------------------------------------------------------- */
+  function syncToggle() {
+    var theme = document.documentElement.getAttribute('data-theme') || 'light';
+    var btns = document.querySelectorAll('.theme-toggle [data-theme-set]');
+    btns.forEach(function (b) {
+      b.setAttribute('aria-pressed', b.dataset.themeSet === theme ? 'true' : 'false');
+    });
+  }
+
+  function setTheme(t) {
+    if (t !== 'light' && t !== 'dark') return;
+    document.documentElement.setAttribute('data-theme', t);
+    try { localStorage.setItem('theme', t); } catch (e) {}
+    syncToggle();
+  }
+
+  function startToggle() {
+    syncToggle();
+    document.querySelectorAll('.theme-toggle [data-theme-set]').forEach(function (btn) {
+      btn.addEventListener('click', function () { setTheme(btn.dataset.themeSet); });
+    });
+    /* If the user hasn't expressed a preference, follow the system. */
+    if (window.matchMedia) {
+      var mq = window.matchMedia('(prefers-color-scheme: dark)');
+      var listener = function (e) {
+        try {
+          if (!localStorage.getItem('theme')) setTheme(e.matches ? 'dark' : 'light');
+        } catch (err) {}
+      };
+      if (mq.addEventListener) mq.addEventListener('change', listener);
+      else if (mq.addListener) mq.addListener(listener);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startToggle);
+  } else {
+    startToggle();
+  }
 })();

@@ -11,7 +11,9 @@
 }
 
 :root {
-  /* --- color: paper surface ---------------------------------------------- */
+  color-scheme: light;
+
+  /* --- color: paper surface — the lamp-lit study by day ----------------- */
   --paper:        oklch(97% 0.012 85);
   --paper-2:      oklch(94% 0.014 85);   /* sunken paper, e.g. blockquote */
   --paper-edge:   oklch(86% 0.010 80);   /* deckle edge */
@@ -38,6 +40,62 @@
   --rule:         var(--ink-rule);
   --accent:       var(--cinnabar);
   --link:         var(--cinnabar-ink);
+  --selection:    oklch(86% 0.12 32);    /* warm cinnabar wash */
+}
+
+/* Dark mode — by lamp.
+   The "paper" surface becomes a warm, lamp-lit study; chart-room stays cool
+   teal-navy. The two-surface contrast is preserved (warm dark vs. cool dark)
+   instead of being washed out. */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --paper:        oklch(18% 0.014 55);   /* warm dark, lamp-lit study */
+  --paper-2:      oklch(22% 0.016 55);   /* sunken */
+  --paper-edge:   oklch(26% 0.014 60);
+
+  --ink:          oklch(92% 0.018 85);   /* warm cream */
+  --ink-2:        oklch(74% 0.016 80);
+  --ink-3:        oklch(58% 0.014 75);
+  --ink-rule:     oklch(34% 0.012 70);
+
+  --cinnabar:     oklch(70% 0.18 32);    /* lifted so it pops on dark */
+  --cinnabar-ink: oklch(78% 0.16 32);    /* underlines / hover on dark */
+
+  /* chart-room: the panel reads as slightly *raised* from the warm-dark
+     page when in dark mode, so the contrast still works. */
+  --chart:        oklch(24% 0.045 230);
+  --chart-2:      oklch(30% 0.05 230);
+  --chart-edge:   oklch(38% 0.04 230);
+
+  --selection:    oklch(40% 0.14 32);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not([data-theme="dark"]) {
+    color-scheme: dark;
+
+    --paper:        oklch(18% 0.014 55);
+    --paper-2:      oklch(22% 0.016 55);
+    --paper-edge:   oklch(26% 0.014 60);
+
+    --ink:          oklch(92% 0.018 85);
+    --ink-2:        oklch(74% 0.016 80);
+    --ink-3:        oklch(58% 0.014 75);
+    --ink-rule:     oklch(34% 0.012 70);
+
+    --cinnabar:     oklch(70% 0.18 32);
+    --cinnabar-ink: oklch(78% 0.16 32);
+
+    --chart:        oklch(24% 0.045 230);
+    --chart-2:      oklch(30% 0.05 230);
+    --chart-edge:   oklch(38% 0.04 230);
+
+    --selection:    oklch(40% 0.14 32);
+  }
+}
+
+:root, [data-theme] {
 
   /* --- type ------------------------------------------------------------- */
   --font-display: "Spectral", "Iowan Old Style", "Charter", "Cambria", "Palatino Linotype",
@@ -144,7 +202,7 @@ a:hover {
   outline-color: oklch(72% 0.18 32);
 }
 
-::selection { background: oklch(86% 0.12 32); color: var(--ink); }
+::selection { background: var(--selection); color: var(--ink); }
 
 /* =========================================================================
    Type primitives
@@ -339,6 +397,53 @@ li + li { margin-top: 0.35em; }
 }
 .atlas-cta::after { content: " \2192"; color: var(--cinnabar); }
 
+/* Day/Night toggle — mirrors the nav cinnabar-dot pattern */
+.header-end {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(0.85rem, 2.2vw, 1.6rem);
+  white-space: nowrap;
+}
+.theme-toggle {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35em;
+}
+.theme-toggle button {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mark);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  background: none;
+  border: 0;
+  padding: 0 0 0.4em;
+  cursor: pointer;
+  position: relative;
+  font-weight: 400;
+  transition: color 160ms ease;
+}
+.theme-toggle button:hover { color: var(--ink); }
+.theme-toggle button[aria-pressed="true"] { color: var(--ink); }
+.theme-toggle button[aria-pressed="true"]::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 4px;
+  height: 4px;
+  background: var(--cinnabar);
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+.theme-toggle .sep {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mark);
+  color: var(--ink-rule);
+  user-select: none;
+  pointer-events: none;
+}
+
 @media (max-width: 820px) {
   .site-header__inner {
     grid-template-columns: auto auto;
@@ -346,8 +451,11 @@ li + li { margin-top: 0.35em; }
     row-gap: var(--space-sm);
   }
   .wordmark { grid-area: mark; }
-  .atlas-cta { grid-area: cta; justify-self: end; }
+  .header-end { grid-area: cta; justify-self: end; }
   .nav { grid-area: nav; justify-content: flex-start; flex-wrap: wrap; }
+}
+@media (max-width: 460px) {
+  .theme-toggle { display: none; } /* falls back to system preference; toggle reappears on tablet */
 }
 
 /* skip link */

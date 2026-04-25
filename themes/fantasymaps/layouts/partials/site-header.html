@@ -22,8 +22,15 @@
       </ul>
     </nav>
 
-    {{ with index .Site.Menus.main 2 }}
-      <a class="atlas-cta" href="{{ .URL }}">Open the atlas</a>
-    {{ end }}
+    <div class="header-end">
+      <div class="theme-toggle" role="group" aria-label="Page lighting">
+        <button type="button" data-theme-set="light" aria-pressed="true">Day</button>
+        <span class="sep" aria-hidden="true">·</span>
+        <button type="button" data-theme-set="dark" aria-pressed="false">Night</button>
+      </div>
+      {{ with index .Site.Menus.main 2 }}
+        <a class="atlas-cta" href="{{ .URL }}">Open the atlas</a>
+      {{ end }}
+    </div>
   </div>
 </header>
