@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tiles on FantasyMaps</title><link>/tags/tiles/</link><description>Recent content in Tiles on FantasyMaps</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 15 Apr 2026 12:00:00 -0500</lastBuildDate><atom:link href="/tags/tiles/index.xml" rel="self" type="application/rss+xml"/><item><title>georender</title><link>/tools/georender/</link><pubDate>Wed, 15 Apr 2026 12:00:00 -0500</pubDate><guid>/tools/georender/</guid><description>&lt;p&gt;The symbolic renderer that gives the atlas its look. georender takes geospatial data, runs it through a JSON ruleset, and emits PNGs — as slippy-map tiles, as full bounding-box images, or as ad-hoc renders of arbitrary GeoJSON.&lt;/p&gt;
+&lt;p&gt;Where the cartographer&amp;rsquo;s red ink and the dotted park boundaries actually get drawn.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/openfantasymap/georender"&gt;Repository&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>
